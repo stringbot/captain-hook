@@ -1,12 +1,14 @@
+/* General */
 * { margin: 0; padding: 0;}
 body { background-color: #800000; }
-
 #wrapper {
 	width: 500px;
 	margin: 20px auto;
 	text-align:center;
 }
-#wrapper #main {
+
+/* Main */
+#main {
 	padding: 15px 10px;
 	background-color: #FC6;
 	border: 5px solid #963;
@@ -14,13 +16,13 @@ body { background-color: #800000; }
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 }
-
-h1, h3 {
+#main h1, h3 {
 	font-family: 'IM Fell DW Pica SC', arial, serif;
 	text-align: center;
 }
 
-#wrapper #footer {
+/* Footer */
+#footer {
 	margin-top: 10px;
 	font: 14px "Palatino Linotype", Palatino, Palladio, "URW Palladio L", 
 	"Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", 
@@ -29,6 +31,9 @@ h1, h3 {
 	Georgia, serif;
 	text-align: center;
 }
-#wrapper #footer p {
-	color: #FFF;
+#footer p {
+	color: #FC6;
+}
+#footer a {
+	color: #963;
 }
