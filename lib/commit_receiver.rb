@@ -1,7 +1,7 @@
 class CommitReceiver
   def initialize(payload)
     payload = JSON.parse(payload)
-    return unless payload["repository"]["owner"]["name"] == "mattonrails"
+    return unless payload["repository"]["owner"]["name"] == APP_CONFIG['github']['username']
     
     $new_posts = []
 

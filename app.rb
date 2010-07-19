@@ -6,6 +6,8 @@ require 'twitter'
 require 'lib/commit_receiver'
 require 'lib/twitter_post'
 
+APP_CONFIG = YAML.load_file('config/config.yml')
+
 # captain-hook only has one endpoint:
 # GET   /         This will display the awesome
 #                 home page for the project
