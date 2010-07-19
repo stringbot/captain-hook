@@ -1,6 +1,6 @@
 class TwitterPost
   def initialize(message)
-    @message = message
+    @message = "#{message} " + APP_CONFIG['blog']['url']
     httpauth = Twitter::HTTPAuth.new(APP_CONFIG['twitter']['username'], APP_CONFIG['twitter']['password'])
     @client = Twitter::Base.new(httpauth)
   end
