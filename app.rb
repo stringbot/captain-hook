@@ -1,6 +1,10 @@
 require 'rubygems'
-require 'json'
 require 'sinatra'
+require 'json'
+require 'twitter'
+
+require 'lib/commit_receiver'
+require 'lib/twitter_post'
 
 # captain-hook only has one endpoint:
 # GET   /         This will display the awesome
@@ -15,25 +19,10 @@ end
 
 # GitHub should send its post-receive hook to the site root
 post '/' do
-  CaptainHook.new(params[:payload])
+  CommitReceiver.new(params[:payload])
+  CommitReceiver.send_tweets
 end
 
-class CaptainHook
-  def initialize(payload)
-    payload = JSON.parse(payload)
-    return unless payload["repository"]["owner"]["name"] == "mattonrails"
 
-    payload["commits"].each do |commit|
-      process_commit(commit["message"])
-    end
-  end
 
-  def process_commit(message)
-    @new_posts = []
 
-    if message =~ /NEW POST/
-      @new_posts << message
-    end
-  end
-
-end
