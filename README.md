@@ -4,7 +4,7 @@
 
 ## Ahoy!
 
-Captain-Hook was written as a responder for a GitHub [post-receive hook](http://help.github.com/post-receive-hooks/). I wanted to have my Twitter automatically updated with a title and link any time I published a new post on my blog (hosted on GitHub, powered by [Jekyll](http://github.com/mattonrails/jekyll).
+Captain-Hook was written as a responder for a GitHub [post-receive hook](http://help.github.com/post-receive-hooks/). I wanted to have my Twitter automatically updated with a title and link any time I published a new post on my blog (hosted on GitHub, powered by [Jekyll](http://github.com/mattonrails/jekyll)).
 
 Pushing to a GitHub repository POSTs JSON data about the commit(s) to a hook URL, including repository info, and the messages for every commit. Captain-Hook detects a new post by parsing the commit message(s), looking for "NEW POST", and updates a Twitter account for each new post.
 
