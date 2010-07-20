@@ -30,6 +30,7 @@ Failing example (sorry in advance):
 1. Fork or clone this repository
 2. Install necessary gems with: `rake install_dependencies`
 3. Copy config/config.example.yml to config/config.yml and modify
+4. Deploy (I would recommend [Heroku](http://heroku.com/) in this case)
 4. Follow the instructions [here](http://help.github.com/post-receive-hooks/) to setup post-receive hooks on a GitHub project
 5. Push a new blog with "NEW POST" in the commit message, and wait for the traffic!
 
