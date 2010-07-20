@@ -1,6 +1,6 @@
 # Captain-Hook
 
-http://captain-hook.heroku.com/
+[http://captain-hook.heroku.com/](http://captain-hook.heroku.com/)
 
 ## Ahoy!
 
