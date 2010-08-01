@@ -14,13 +14,12 @@ Working example:
 
 Failing example (sorry in advance):
 
-	git commit -m "GREAT NEWS EVERYONE: Ruby 2.0 released"
+	git commit -m "GOOD NEWS EVERYONE: Ruby 2.0 released"
 
 **If your blog is on GitHub pages and you just love to tweet, this should save you time.**
 
 ## Requirements
 
-- RSpec
 - [sinatra](http://github.com/sinatra/sinatra) (1.0)
 - json
 - [twitter](http://github.com/jnunemaker/twitter)

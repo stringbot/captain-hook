@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Commit Receiver" do
+describe "Captain-Hook" do
   include Rack::Test::Methods
 
   def app
@@ -12,9 +12,18 @@ describe "Commit Receiver" do
     last_response.should be_ok
   end
   
-  it "should receive the GitHub payload" do
-    post '/', :payload => PayloadWithoutPosts
+  it "should accept the GitHub payload" do
+    APP_CONFIG['token'] = 'secret'
+    post '/', :payload => PayloadWithoutPosts, :token => 'secret'
     last_response.should be_ok
+  end
+  
+  describe "without any POST parameters" do
+    it "should return a 401 error" do
+      post '/'
+      last_response.status.should == 401
+    end
+    
   end
   
   describe "without any new posts" do

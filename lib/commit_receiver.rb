@@ -1,8 +1,7 @@
 class CommitReceiver
   def initialize(payload)
     payload = JSON.parse(payload)
-    return unless payload["repository"]["owner"]["name"] == APP_CONFIG['github']['username']
-    
+
     $new_posts = []
 
     payload["commits"].each do |commit|
@@ -15,7 +14,7 @@ class CommitReceiver
       $new_posts << message
     end
   end
-  
+
   def self.send_tweets
     $new_posts.each do |title|
       tweet = TwitterPost.new(title)
