@@ -1,13 +1,5 @@
 require 'spec_helper'
 
-$payload = File.open("spec/data/payload.json", "r") do |line|
-  line.gets
-end
-
-$with_post = File.open("spec/data/with_post.json", "r") do |line|
-  line.gets
-end
-
 describe "Commit Receiver" do
   include Rack::Test::Methods
 
@@ -21,23 +13,30 @@ describe "Commit Receiver" do
   end
   
   it "should receive the GitHub payload" do
-    post '/', :payload => $payload
+    post '/', :payload => PayloadWithoutPosts
     last_response.should be_ok
   end
   
-  it "should parse the JSON" do
-    CommitReceiver.new($payload)
-    @payload.is_a?(Hash) == true
+  describe "without any new posts" do
+    before { @cr = CommitReceiver.new(PayloadWithoutPosts) }
+    
+    it "should parse the JSON" do
+      @payload.is_a?(Hash) == true
+    end
+    
+    it "should ignore the commits" do
+      $new_posts.empty? == true
+    end
+    
   end
   
-  it "should add 'NEW POST' messages to queue" do
-    CommitReceiver.new($with_post)
-    $new_posts.empty? == false
-  end
-  
-  it "should ignore commits that aren't a blog post" do
-    CommitReceiver.new($with_post)
-    $new_posts.empty? == true
+  describe "with new post(s)" do
+    before { @cr = CommitReceiver.new(PayloadWithPost) }
+    
+    it "should add 'NEW POST' messages to queue" do
+      $new_posts.empty? == false
+    end
+    
   end
   
 end
