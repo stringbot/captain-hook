@@ -12,11 +12,10 @@ describe "Captain-Hook" do
     last_response.should be_ok
   end
 
-  it "should accept the GitHub payload" do
-    APP_CONFIG['token'] = 'secret'
-    post '/', :payload => PayloadWithoutPosts, :token => 'secret'
-    last_response.should be_ok
-  end
+  it "should accept the Heroku payload"
+    #APP_CONFIG['token'] = 'secret'
+    #post '/', :payload => PayloadWithoutPosts, :token => 'secret'
+    #last_response.should be_ok
 
   describe "without any POST parameters" do
     it "should return a 401 error" do
@@ -42,9 +41,13 @@ describe "Captain-Hook" do
   describe "with new post(s)" do
     before { @cr = CommitReceiver.new(PayloadWithPost) }
 
-    it "should add 'NEW POST' messages to queue" do
-      $new_posts.empty? == false
-    end
+    #it "should add 'NEW POST' messages to queue" do
+      #$new_posts.empty? == false
+    #end
+
+    it "should POST to hipchat"
+
+    it "should POST to airbrake"
 
   end
 
