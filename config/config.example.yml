@@ -1,12 +1,3 @@
-# Choose a complex string to identify legitimate requests.
-# Place the token below and use http://{app location}/?token={the token below}
-# as the post-receive URL on GitHub
-token: 'secret'
-  
-twitter:
-  username: 'captain_hook'
-  password: 'i<3rum'
-  
 # Used as a link to your blog in each tweet
 blog:
   url: 'http://github.com/url'
