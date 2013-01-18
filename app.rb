@@ -12,21 +12,20 @@ APP_CONFIG = YAML.load_file('config/config.yml')
 # GET   /         This will display the awesome
 #                 home page for the project
 #
-# POST  /         This is where GitHub will send
-#                 its post-receive hooks
+# POST  /         This is where Heroku will send
+#                 its post-deploy hooks
 
 get '/' do
   haml :index
 end
 
-# GitHub should send its post-receive hook to the site root
+# Heroku should send its post-receive hook to the site root
 post '/' do
   # The data should include a payload and secret token
-  unless params[:payload] && params[:token] && params[:token] == APP_CONFIG['token']
+  unless params.length > 0
     throw :halt, [401, "Oops.\n"] and return
   else
-    CommitReceiver.new(params[:payload])
-    CommitReceiver.send_tweets
+    CommitReceiver.new(params)
   end
 end
 

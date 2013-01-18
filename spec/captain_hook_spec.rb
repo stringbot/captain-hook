@@ -31,11 +31,6 @@ describe "Captain-Hook" do
     it "should parse the JSON" do
       @payload.is_a?(Hash) == true
     end
-
-    it "should ignore the commits" do
-      $new_posts.empty? == true
-    end
-
   end
 
   describe "with new post(s)" do
