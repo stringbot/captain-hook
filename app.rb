@@ -1,10 +1,9 @@
 require 'rubygems'
 require 'sinatra'
 require 'json'
-require 'twitter'
+require 'yaml'
 
-require 'lib/commit_receiver'
-require 'lib/twitter_post'
+require_relative 'lib/commit_receiver'
 
 APP_CONFIG = YAML.load_file('config/config.yml')
 
