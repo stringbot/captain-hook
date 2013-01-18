@@ -12,10 +12,10 @@ describe "Captain-Hook" do
     last_response.should be_ok
   end
 
-  it "should accept the Heroku payload"
-    #APP_CONFIG['token'] = 'secret'
-    #post '/', :payload => PayloadWithoutPosts, :token => 'secret'
-    #last_response.should be_ok
+  it "should accept the Heroku payload" do
+    post '/', user: 'user@centro.test', app: 'The Transis', url: 'http://the-transis.herokuapp.com'
+    last_response.should be_ok
+  end
 
   describe "without any POST parameters" do
     it "should return a 401 error" do
@@ -25,16 +25,8 @@ describe "Captain-Hook" do
 
   end
 
-  describe "without any new posts" do
-    before { @cr = CommitReceiver.new(PayloadWithoutPosts) }
-
-    it "should parse the JSON" do
-      @payload.is_a?(Hash) == true
-    end
-  end
-
-  describe "with new post(s)" do
-    before { @cr = CommitReceiver.new(PayloadWithPost) }
+  describe "with a new deploy" do
+    before { @cr = CommitReceiver.new(nil) }
 
     #it "should add 'NEW POST' messages to queue" do
       #$new_posts.empty? == false
