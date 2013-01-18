@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'json'
 require 'yaml'
+require 'haml'
 
 require_relative 'lib/commit_receiver'
 
@@ -15,7 +16,7 @@ APP_CONFIG = YAML.load_file('config/config.yml')
 #                 its post-receive hooks
 
 get '/' do
-  erb :index
+  haml :index
 end
 
 # GitHub should send its post-receive hook to the site root
