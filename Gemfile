@@ -1,4 +1,5 @@
 gem "sinatra"
+gem "haml"
 gem "rspec"
 gem "rack-test"
-gem "haml"
+gem "rr"
