@@ -5,7 +5,6 @@ require 'yaml'
 require 'haml'
 
 require_relative 'lib/deploy_receiver'
-require_relative 'lib/deploy_hooks'
 
 APP_CONFIG = YAML.load_file('config/config.yml')
 
