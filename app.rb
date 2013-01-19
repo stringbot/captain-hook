@@ -26,7 +26,7 @@ post '/' do
   unless params.length > 0
     throw :halt, [401, "Oops.\n"] and return
   else
-    DeployReceiver.new(params)
+    DeployReceiver.receive(params)
   end
 end
 
