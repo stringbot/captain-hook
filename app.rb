@@ -19,10 +19,11 @@ end
 
 # Heroku should send its post-receive hook to the site root
 post '/' do
-  # The data should include a payload and secret token
+  # The data should include params from a Heroku HTTP post hook
   unless params.length > 0
     throw :halt, [401, "Oops.\n"] and return
   else
+    logger.info "Received post with params: #{params}"
     DeployReceiver.receive(params)
   end
 end
