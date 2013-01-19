@@ -6,8 +6,6 @@ require 'haml'
 
 require_relative 'lib/deploy_receiver'
 
-APP_CONFIG = YAML.load_file('config/config.yml')
-
 # captain-hook only has one endpoint:
 # GET   /         This will display the awesome
 #                 home page for the project
