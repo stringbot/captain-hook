@@ -4,7 +4,8 @@ require 'json'
 require 'yaml'
 require 'haml'
 
-require_relative 'lib/commit_receiver'
+require_relative 'lib/deploy_receiver'
+require_relative 'lib/deploy_hooks'
 
 APP_CONFIG = YAML.load_file('config/config.yml')
 
@@ -25,7 +26,7 @@ post '/' do
   unless params.length > 0
     throw :halt, [401, "Oops.\n"] and return
   else
-    CommitReceiver.new(params)
+    DeployReceiver.new(params)
   end
 end
 

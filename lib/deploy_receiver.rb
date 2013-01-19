@@ -1,4 +1,4 @@
-class CommitReceiver
+class DeployReceiver
   def initialize(params)
 
   end

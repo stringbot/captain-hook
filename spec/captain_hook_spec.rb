@@ -22,15 +22,10 @@ describe "Captain-Hook" do
       post '/'
       last_response.status.should == 401
     end
-
   end
 
   describe "with a new deploy" do
-    before { @cr = CommitReceiver.new(nil) }
-
-    #it "should add 'NEW POST' messages to queue" do
-      #$new_posts.empty? == false
-    #end
+    before { @cr = DeployReceiver.new([]) }
 
     it "should POST to hipchat"
 
