@@ -17,12 +17,15 @@ describe DeployReceiver do
   end
 
   describe "receiving params from a POST" do
+    let(:hook) { CaptainHook::Hook.new(url, { user: :user, app: :app_name }) }
+    let(:out_params) { { user: "Clyde Smelter", app_name: "test-app" } }
+
     before do
-      receiver.add_hook(url)
+      receiver.add_hook(hook)
     end
 
     it "calls post with the parameters" do
-      receiver.should_receive(:post).with(url, params)
+      receiver.should_receive(:post).with(url, out_params)
       receiver.receive(params)
     end
   end

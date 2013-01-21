@@ -9,8 +9,8 @@ class DeployReceiver
   end
 
   def receive(params)
-    @hooks.each do |hook_url|
-      post hook_url, params
+    @hooks.each do |hook|
+      post hook.post_url, hook.translate_params(params)
     end
   end
 
@@ -39,7 +39,4 @@ class DeployReceiver
     @hooks = []
     CaptainHook::Hooks.register_hooks(self)
   end
-
-  #curl -d "auth_token=AUTHTOKEN&room_id=ROOM_ID&from=test_bot&message=hello%20world" http:/v1/rooms/message/
-  #curl -d "api_key=API_KEY&deploy[rails_env]=ENVIRONMENT" http://airbrake.io/deploys
 end
