@@ -11,8 +11,8 @@ module CaptainHook
       in_params.inject({}) do |map,hash_pair|
         param, value        = hash_pair
         translated_key      = @param_map[param]
-        map[translated_key] = value
 
+        map[translated_key] = value if translated_key
         map
       end
     end
