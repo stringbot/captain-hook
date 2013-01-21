@@ -10,7 +10,14 @@ module CaptainHook
 
       def hipchat_hook
         #curl -d "auth_token=AUTHTOKEN&room_id=ROOM_ID&from=test_bot&message=hello%20world" http:/v1/rooms/message/
-        ""
+        base_params = {
+          auth_token: ENV['HIPCHAT_TOKEN'],
+          room_id:    ENV['HIPCHAT_ROOM'],
+          from:       "Deploy Bot",
+          message:    "Somebody deployed something"
+        }
+
+        CaptainHook::Hook.new("http://api.hipchat.com/vi/rooms/message/")
       end
 
       def airbrake_hook

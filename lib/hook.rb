@@ -2,19 +2,13 @@ module CaptainHook
   class Hook
     attr_reader :post_url
 
-    def initialize(url, param_map)
+    def initialize(url, &block)
       @post_url = url
-      @param_map = param_map
+      @translator_proc = block
     end
 
     def translate_params(in_params)
-      in_params.inject({}) do |map,hash_pair|
-        param, value        = hash_pair
-        translated_key      = @param_map[param]
-
-        map[translated_key] = value if translated_key
-        map
-      end
+      @translator_proc.call(in_params)
     end
   end
 end

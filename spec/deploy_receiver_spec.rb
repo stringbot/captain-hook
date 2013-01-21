@@ -17,7 +17,7 @@ describe DeployReceiver do
   end
 
   describe "receiving params from a POST" do
-    let(:hook) { CaptainHook::Hook.new(url, { user: :user, app: :app_name }) }
+    let(:hook) { CaptainHook::Hook.new(url) { |params| { user: params[:user], app_name: params[:app] } } }
     let(:out_params) { { user: "Clyde Smelter", app_name: "test-app" } }
 
     before do

@@ -1,34 +1,32 @@
 require 'spec_helper'
 
 describe CaptainHook::Hook do
-  let(:param_map) { { :param_1 => :translated_1, :param_2 => :translated_2 } }
-  let(:hook) { CaptainHook::Hook.new("http://post-url.test", param_map) }
-  let(:example_params) { { :param_1 => "one", :param_2 => "two" } }
-  let(:expected_params) { { :translated_1 => "one", :translated_2 => "two" } }
-
-  describe "one to one translation" do
-    it "translates params" do
-      hook.translate_params(example_params).should == expected_params
-    end
-
-    it "knows the post url" do
-      hook.post_url.should == "http://post-url.test"
+  let(:hook) do
+    CaptainHook::Hook.new("http://api.hipchat.test/fake_endpoint") do |deploy_keys|
+      {
+        auth_token: "faketoken",
+        room_id: "room name",
+        from: "deploy bot",
+        message: "#{deploy_keys[:head]} deployed by #{deploy_keys[:user]}"
+      }
     end
   end
 
-  describe "asymmetric translation" do
-    let(:example_params) { { :param_1 => "one", :param_2 => "two", :param_3 => "three" } }
+  #heroku hook vars
+  #app: the app name
+  #user: email of the user deploying the app
+  #url: the app URL (http://myapp.heroku.com or http://mydomain.com if you have custom domains enabled)
+  #head: short identifier of the latest commit (first seven bytes of the SHA1 git object name)
+  #head_long: full identifier of the latest commit
+  #git_log: log of commits between this deploy and the last
 
-    it "ignores unmapped params" do
-      hook.translate_params(example_params).should == expected_params
+  describe "building params" do
+    let(:deploy_params) { { app: "fake-app", user: "user@fake.test", url: "http://app-url.com", head: "DEADBEEF" } }
+    let(:hipchat_params) { { auth_token: "faketoken", room_id: "room name", from: "deploy bot", message: "DEADBEEF deployed by user@fake.test" } }
+
+    it "builds valid hipchat params" do
+      hook.translate_params(deploy_params).should == hipchat_params
     end
 
-    describe "with an unused map key" do
-      let(:param_map) { { :param_1 => :translated_1, :param_2 => :translated_2, :param_unused => :translated_unused } }
-
-      it "ignores unused map keys" do
-        hook.translate_params(example_params).should == expected_params
-      end
-    end
   end
 end
