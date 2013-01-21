@@ -1,11 +1,18 @@
 require 'faraday'
 
+#quacks like Faraday
+class MockConnection
+  def post(&block)
+  end
+end
+
+
 class DeployReceiver
   attr_accessor :connection
 
   def initialize
-    load_hooks
-    @connection = faraday_connection
+    @hooks = []
+    @connection = ENV['PRODUCTION'] ? faraday_connection : MockConnection.new
   end
 
   def receive(params)
@@ -35,8 +42,4 @@ class DeployReceiver
     end
   end
 
-  def load_hooks
-    @hooks = []
-    CaptainHook::Hooks.register_hooks(self)
-  end
 end

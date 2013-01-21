@@ -26,7 +26,9 @@ post '/' do
     throw :halt, [401, "Oops.\n"] and return
   else
     logger.info "Received post with params: #{params}"
-    DeployReceiver.new.receive(params)
+    receiver = DeployReceiver.new
+    CaptainHook::Hooks.register_hooks(receiver) if ENV['PRODUCTION']
+    receiver.receive(params)
   end
 end
 

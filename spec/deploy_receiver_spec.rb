@@ -1,11 +1,5 @@
 require 'spec_helper'
 
-#quacks like Faraday
-class MockConnection
-  def post(&block)
-  end
-end
-
 describe DeployReceiver do
   let(:url) { "http://example.com/posts" }
   let(:params) { { user: "Clyde Smelter", app: "test-app", url: "http://test-app.herokuapp.com" } }
