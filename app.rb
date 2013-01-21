@@ -30,6 +30,7 @@ post '/' do
     CaptainHook::Hooks.register_hooks(receiver) if ENV['PRODUCTION']
     receiver.receive(params)
   end
+  ""
 end
 
 

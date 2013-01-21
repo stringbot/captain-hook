@@ -21,8 +21,8 @@ class DeployReceiver
     end
   end
 
-  def add_hook(url)
-    @hooks << url
+  def add_hook(hook)
+    @hooks << hook
   end
 
   def post(url, params)
