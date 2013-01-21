@@ -4,6 +4,7 @@ require 'haml'
 
 require_relative 'lib/authentication'
 require_relative 'lib/deploy_receiver'
+require_relative 'lib/hooks'
 
 include CaptainHook::Authentication
 

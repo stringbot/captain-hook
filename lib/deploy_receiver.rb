@@ -4,6 +4,7 @@ class DeployReceiver
   attr_accessor :connection
 
   def initialize
+    load_hooks
     @connection = faraday_connection
   end
 
@@ -33,4 +34,12 @@ class DeployReceiver
       faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
     end
   end
+
+  def load_hooks
+    @hooks = []
+    CaptainHook::Hooks.register_hooks(self)
+  end
+
+  #curl -d "auth_token=AUTHTOKEN&room_id=ROOM_ID&from=test_bot&message=hello%20world" http:/v1/rooms/message/
+  #curl -d "api_key=API_KEY&deploy[rails_env]=ENVIRONMENT" http://airbrake.io/deploys
 end
