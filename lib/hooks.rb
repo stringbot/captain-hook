@@ -5,7 +5,7 @@ module CaptainHook
     instance_eval do
       def register_hooks(receiver)
         receiver.add_hook(hipchat_hook)
-        #receiver.add_hook(airbrake_hook)
+        receiver.add_hook(airbrake_hook)
       end
 
       # TODO: Modularize this better
