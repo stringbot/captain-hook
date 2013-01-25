@@ -27,7 +27,7 @@ post '/' do
   else
     logger.info "Received post with params: #{params}"
     receiver = DeployReceiver.new
-    CaptainHook::Hooks.register_hooks(receiver) if ENV['PRODUCTION']
+    CaptainHook::Hooks.register_hooks(receiver)
     receiver.receive(params)
   end
   ""

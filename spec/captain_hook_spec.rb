@@ -35,13 +35,4 @@ describe "Captain-Hook" do
     end
   end
 
-  describe "with a new deploy" do
-    before { @cr = DeployReceiver.new([]) }
-
-    it "should POST to hipchat"
-
-    it "should POST to airbrake"
-
-  end
-
 end
