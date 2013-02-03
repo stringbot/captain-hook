@@ -26,14 +26,14 @@ module CaptainHook
 
       def airbrake_hook
         base_params = {
-          'api_key' => ENV['AIRBRAKE_API_KEY'],
-          'deploy[rails_env]' => ENV['AIRBRAKE_DEPLOY_ENV']
+          'api_key' => ENV['AIRBRAKE_API_KEY']
         }
 
         CaptainHook::Hook.new("http://airbrake.io/deploys") do |deploy_params|
           base_params.merge({
             'deploy[local_username]' => deploy_params[:user],
-            'deploy[scm_revision'    => deploy_params[:head]
+            'deploy[scm_revision]'   => deploy_params[:head],
+            'deploy[rails_env]'      => deploy_params[:environment]
           })
         end
       end
