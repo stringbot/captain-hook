@@ -18,8 +18,9 @@ module CaptainHook
         }
 
         CaptainHook::Hook.new("http://api.hipchat.com/v1/rooms/message/") do |deploy_params|
+          host_url = "<a href='#{deploy_params[:url]}'>#{deploy_params[:url]}</a>"
           base_params.merge({
-            message: "#{deploy_params[:user]} deployed #{deploy_params[:head]} to #{deploy_params[:url]}"
+            message: "#{deploy_params[:user]} deployed #{deploy_params[:head]} to #{host_url}"
           })
         end
       end
@@ -37,7 +38,6 @@ module CaptainHook
           })
         end
       end
-
     end
   end
 end
